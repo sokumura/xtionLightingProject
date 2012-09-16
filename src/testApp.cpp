@@ -6,24 +6,7 @@
 //////////////////
 //////////////////
 
-//---
-void EnumerateProductionTrees(ofxOpenNIContext _context, XnProductionNodeType type){
-    xn::NodeInfoList nodes;
-    _context.getXnContext().EnumerateProductionTrees(type, NULL, nodes);
-    for (xn::NodeInfoList::Iterator it = nodes.Begin(); it != nodes.End(); ++it){
-        std::cout << 
-        ::xnProductionNodeTypeToString((*it).GetDescription().Type) <<
-        ", " <<
-        (*it).GetCreationInfo() << ", " <<
-        (*it).GetInstanceName() << ", " <<
-        (*it).GetDescription().strName << ", " <<
-        (*it).GetDescription().strVendor << ", " << 
-        std::endl;
-        
-        xn::NodeInfo info = *it;
-        _context.getXnContext().CreateProductionTree(info);
-    }
-}
+
 //--------------------------------------------------------------
 void testApp::setup(){
 	ofxFenster * win = ofxFensterManager::get()->createFenster(400 , 0, 1300, 900, OF_WINDOW);
@@ -32,25 +15,40 @@ void testApp::setup(){
     
     ui.setup();
 //xtion--
+	//context.setupUsingXMLFile(ofToDataPath("openni/config/asus.xml", true));
+    XnStatus nRetVal = XN_STATUS_OK;
+    nRetVal = context.setup();    
+    NodeInfoList devicesList;
+    int devicesListCount = 0;
+    nRetVal = context.getXnContext().EnumerateProductionTrees(XN_NODE_TYPE_DEVICE, NULL, devicesList);
+    for (NodeInfoList::Iterator it = devicesList.Begin(); it != devicesList.End(); ++it){
+        devicesListCount++;
+    }
+    cout << "devicesListCount : " << devicesListCount << endl;
     
-	context.setupUsingXMLFile(ofToDataPath("openni/config/asus.xml", true));
-    //context.setupUsingXMLFile(ofToDataPath("openni/config/SamplesConfig.xml", true));
-
-    //EnumerateProductionTrees(context, XN_NODE_TYPE_DEVICE);
-//    EnumerateProductionTrees(context, XN_NODE_TYPE_DEPTH);
-//    xn::NodeInfoList nodeList;
-//	context.getXnContext().EnumerateExistingNodes(nodeList);
-//    
+    int i=0;
+    for (NodeInfoList::Iterator it = devicesList.Begin(); it != devicesList.End(); ++it, ++i){
+        NodeInfo deviceInfo = *it;
+        nRetVal = context.getXnContext().CreateProductionTree(deviceInfo, sensors[i].device);
+        Query query;
+        query.AddNeededNode(deviceInfo.GetInstanceName());
+        nRetVal = context.getXnContext().CreateAnyProductionTree(XN_NODE_TYPE_DEPTH, &query, sensors[i].depth.getXnDepthGenerator());
+    }
+    context.getXnContext().StartGeneratingAll();
     
-    depthGenerator.setup(&context);
+    
+    
+    //depthGenerator.setup(&context);
 //--xtion
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
 	context.update();
-	depthGenerator.update();
-	
+	//depthGenerator.update();
+	for (int i = 0; i < NUM_OF_SENSORS; i++) {
+        sensors[i].depth.update();
+    }
 	//depthGeneratorから、深さとx,yの情報を得る
 	//
 	
@@ -58,7 +56,10 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	depthGenerator.draw(0, 0, 640, 480);
+    
+	for (int i = 0; i < NUM_OF_SENSORS; i++){
+        sensors[i].depth.draw(i*700, 0, 640, 480);
+    }
 }
 
 //--------------------------------------------------------------

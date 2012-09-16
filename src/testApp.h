@@ -6,6 +6,9 @@
 #include "ofxOpenNI.h"
 //#include "ofxSimpleGuiToo.h"
 
+using namespace xn;
+
+#define NUM_OF_SENSORS  2
 #define MAX_DEPTH 10000
 
 class uiWindow : public ofxFensterListener {
@@ -17,6 +20,13 @@ public:
 private:
 //    ofxSimpleGuiToo gui;
 	
+};
+
+struct DepthSensors {
+    char name[80];
+    ProductionNode device;
+    ofxDepthGenerator depth;
+    //DepthMetaData depthMD;
 };
 
 class testApp : public ofBaseApp{
@@ -37,7 +47,8 @@ public:
     void gotMessage(ofMessage msg);
     
 	ofxOpenNIContext    context;
-	ofxDepthGenerator   depthGenerator;
+	//ofxDepthGenerator   depthGenerator;
+    DepthSensors sensors[NUM_OF_SENSORS];
     
     uiWindow ui;
 		
