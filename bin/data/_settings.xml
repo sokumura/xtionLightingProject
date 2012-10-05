@@ -1,0 +1,23 @@
+<controls>
+    <Toggle_myBool1_Animate>
+        <name>myBool1 Animate</name>
+        <value>0</value>
+    </Toggle_myBool1_Animate>
+    <SliderFloat_myFloat1>
+        <_noise></_noise>
+        <name>myFloat1: noise</name>
+        <value>0.56</value>
+    </SliderFloat_myFloat1>
+    <SliderInt_myInt1>
+        <name>myInt1</name>
+        <value>10</value>
+    </SliderInt_myInt1>
+    <ComboBox_box1>
+        <name>box1</name>
+        <value>0</value>
+    </ComboBox_box1>
+    <Button_Randomize_Background>
+        <name>Randomize Background</name>
+        <value>1</value>
+    </Button_Randomize_Background>
+</controls>

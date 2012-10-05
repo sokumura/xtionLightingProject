@@ -15,8 +15,8 @@
 
 
 typedef struct {
-	int nearThreshold;
-	int farThreshold;
+	XnUInt16 nearThreshold;
+	XnUInt16 farThreshold;
 } mydepth_threshold;
 
 class myDepthGenerator {
@@ -27,17 +27,20 @@ public:
     std::vector<unsigned char*>	depth_pixels;
     std::vector<unsigned char*>	mask_pixels;
     std::vector<mydepth_threshold> depth_thresholds;
-    std::vector<int> max_depth;
+    std::vector<XnMapOutputMode> out_put_modes;
+    std::vector<XnUInt16> max_depth;
     
     bool bUpdateMasks;
     //TODO: テクスチャーを作る（プレビュー）かどうかを受けて処理する記述を加える
     bool bGenerateTexture;
     int generatorNum;
-	int	width, height;
     
     myDepthGenerator(){
         generatorNum = 0;
+        bUpdateMasks = false;
+        bGenerateTexture = true;//初期設定としては、プレビュー有り
     }
+
 	
     //----------------------------------------------
 	bool setup(xn::NodeInfo& node){
@@ -58,13 +61,9 @@ public:
             map_mode.nXRes = XN_VGA_X_RES;
             map_mode.nYRes = XN_VGA_Y_RES;
             map_mode.nFPS  = 30;
+            out_put_modes.push_back(map_mode);
             
             depth_generator[generatorNum].SetMapOutputMode(map_mode);
-            
-            // Default max depth is on GlobalDefaults.ini: MaxDepthValue=10000
-            //ここ
-            width		= map_mode.nXRes;
-            height		= map_mode.nYRes;
             
             // TODO: add capability for b+w depth maps (more efficient for draw)
             ofTexture tex;
@@ -74,18 +73,16 @@ public:
             memset(depth_pixels[generatorNum], 0, map_mode.nXRes * map_mode.nYRes * 4 * sizeof(unsigned char));
             
             // setup mask pixelskk
-            int depthMax = depth_generator[generatorNum].GetDeviceMaxDepth();
+            XnUInt16 depthMax = depth_generator[generatorNum].GetDeviceMaxDepth();
             max_depth.push_back(depthMax);
-            mask_pixels[generatorNum] = new unsigned char[width * height];
-            mydepth_threshold thre;
+            mask_pixels[generatorNum] = new unsigned char[out_put_modes[generatorNum].nXRes * out_put_modes[generatorNum].nYRes];
+            mydepth_threshold thre;//これを使う
             depth_thresholds.push_back(thre);
             depth_thresholds[generatorNum].nearThreshold = 0;
             depth_thresholds[generatorNum].farThreshold = max_depth[generatorNum - 1];
             
             printf("Depth camera No.%d inited\n", generatorNum);
             generatorNum++;
-            bUpdateMasks = false;
-            bGenerateTexture = true;//初期設定としては、プレビュー有り
             
             return true;
         }
@@ -108,63 +105,61 @@ public:
 	void update(){
         
         for (int i = 0; i < generatorNum; i++) {
-            // get meta-data
-            //depth_generator[0].WaitAndUpdateData();
-            xn::DepthMetaData depthMD;
-            depth_generator[i].GetMetaData(depthMD);
-            //printf("depth_generator[%i]のデータをゲットしました。\n", i);
-            if (bGenerateTexture) generateTexture(i, depthMD);
-            if (bUpdateMasks) {
-                updateMaskPixels(i, depthMD);
+            if (depth_generator[i].IsNewDataAvailable()) {
+                depth_generator[i].WaitAndUpdateData();
+                xn::DepthMetaData depthMD;
+                depth_generator[i].GetMetaData(depthMD);
+                if (bGenerateTexture) generateTexture(depthMD, i);
+                if (bUpdateMasks) {
+                    updateMaskPixels(depthMD, i);
+                }
             }
         }
-
-            
-        
     }
     //----------------------------------------------
-    void generateTexture(int textureNum, const xn::DepthMetaData& dmd){
+    void generateTexture(const xn::DepthMetaData& dmd, int textureNum = 0, XnUInt16 nearThreshold = 0, XnUInt16 farThreshold = 10000){
         if (textureNum > generatorNum) {
             ofLogError("myDepthGenerator.generateTexture()", "不正なアクセス");
             return;
-        }
-        // get the pixels
-        const XnDepthPixel* depth = dmd.Data();
-        XN_ASSERT(depth);
-        
-        if (dmd.FrameID() == 0) return;
-        
-        // copy depth into texture-map
-        float max;
-        for (XnUInt16 y = dmd.YOffset(); y < dmd.YRes() + dmd.YOffset(); y++) {
-            unsigned char * texture = (unsigned char*)depth_pixels[textureNum] + y * dmd.XRes() * 4 + dmd.XOffset() * 4;
-            for (XnUInt16 x = 0; x < dmd.XRes(); x++, depth++, texture += 4) {
-                XnUInt8 red = 0;
-                XnUInt8 green = 0;
-                XnUInt8 blue = 0;
-                XnUInt8 alpha = 255;
-                
-                max = 255;	// half depth
-                XnUInt8 a = (XnUInt8)(((*depth) / ( max_depth[textureNum] / max)));
-                red		= a;
-                green	= a;
-                blue	= a;
-                
-                texture[0] = red;
-                texture[1] = green;
-                texture[2] = blue;
-                
-                if (*depth == 0)
-                    texture[3] = 0;
-                else
-                    texture[3] = alpha;
+        } else {
+            if (farThreshold == 10000) farThreshold = max_depth[textureNum];
+            // get the pixels
+            const XnDepthPixel* depth = dmd.Data();
+            XN_ASSERT(depth);
+            
+            if (dmd.FrameID() == 0) return;
+            
+            float max;
+            for (XnUInt16 y = dmd.YOffset(); y < dmd.YRes() + dmd.YOffset(); y++) {
+                unsigned char * texture = (unsigned char*)depth_pixels[textureNum] + y * dmd.XRes() * 4 + dmd.XOffset() * 4;
+                for (XnUInt16 x = 0; x < dmd.XRes(); x++, depth++, texture += 4) {
+                    XnUInt8 red = 0;
+                    XnUInt8 green = 0;
+                    XnUInt8 blue = 0;
+                    XnUInt8 alpha = 255;
+                    
+                    max = 255;	// half depth
+                    XnUInt8 a = (XnUInt8)(((*depth) / ( max_depth[textureNum] / max)));
+                    red		= a;
+                    green	= a;
+                    blue	= a;
+                    
+                    texture[0] = red;
+                    texture[1] = green;
+                    texture[2] = blue;
+                    
+                    if (*depth == 0)
+                        texture[3] = 0;
+                    else
+                        texture[3] = alpha;
+                }
             }
+            depth_texture[textureNum].loadData((unsigned char *)depth_pixels[textureNum], dmd.XRes(), dmd.YRes(), GL_RGBA);
+            //printf("depth_texture[%i]を書き換えました。\n", textureNum);
         }
-        depth_texture[textureNum].loadData((unsigned char *)depth_pixels[textureNum], dmd.XRes(), dmd.YRes(), GL_RGBA);
-        //printf("depth_texture[%i]を書き換えました。\n", textureNum);
     }
 	//----------------------------------------------
-    void setDepthThreshold(int forDepthThresholdNumber, int nearThreshold, int farThreshold){
+    void setDepthThreshold(int nearThreshold, int farThreshold, int forDepthThresholdNumber = 0){
         if (forDepthThresholdNumber > generatorNum) {
             ofLogError("myDepthGenerator.setDepthThreshold()", "不正なアクセス");
         } else {
@@ -173,7 +168,7 @@ public:
         }
     }
 	//----------------------------------------------
-   void setThresholds(int thresholdsNumber, int nearThreshold, int farThreshold){
+   void setThresholds(int nearThreshold, int farThreshold, int thresholdsNumber = 0){
         if (thresholdsNumber > generatorNum) {
             ofLogError("myDepthGenerator.getDepthPixels()", "不正なアクセス");
         } else {
@@ -183,26 +178,19 @@ public:
  
     }
     //----------------------------------------------
-    unsigned char*	getDepthPixels(int maskNumber){
+    unsigned char*	getDepthPixels(int maskNumber = 0){
         if (maskNumber > generatorNum) {
             ofLogError("myDepthGenerator.getDepthPixels()", "不正なアクセス");
         } else return mask_pixels[maskNumber];
     }
 
-	//----------------------------------------------
-    xn::DepthGenerator&	getXnDepthGenerator(int generatorNumber){
-        if (generatorNumber > generatorNum) {
-            ofLogError("myDepthGenerator.getXnDepthGenerator()", "不正なアクセス");
-        } else
-        return depth_generator[generatorNumber];
-    }
     //----------------------------------------------
-    void updateMaskPixels(int maskNumber, const xn::DepthMetaData& dmd){
+    void updateMaskPixels(const xn::DepthMetaData& dmd, int maskNumber = 0){
         if (maskNumber > generatorNum) {
             ofLogError("myDepthGenerator.updateMaskPixels()", "不正なアクセス");
             return;
         }
-        const XnDepthPixel* depth = dmd.Data();
+        const XnDepthPixel* depth = changeToRealDistance(dmd.Data());
         
         int numPixels = dmd.XRes() * dmd.YRes();
         
@@ -215,6 +203,16 @@ public:
             
         }
     }
+    //----------------------------------------------
+    XnDepthPixel* changeToRealDistance(const XnDepthPixel * dep_pixels) {
+        XnDepthPixel * p = new XnUInt16[sizeof(dep_pixels) / sizeof(dep_pixels[0])];
+        //XnDepthPixel newPixels[sizeof(dep_pixels) / sizeof(dep_pixels[0])];
+        for (int i = 0; i < sizeof(dep_pixels) / sizeof(dep_pixels[0]); i++) {
+            p[i] = (unsigned short)(0.1236 * tan(dep_pixels[i] / 2842.5 + 1.1863));
+        }
+        //p = newPixels;
+        return p;
+    } 
     //-----------------------------------------------
 	
 	

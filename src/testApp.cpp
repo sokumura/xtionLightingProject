@@ -1,10 +1,28 @@
 #include "testApp.h"
 //////////////////
 //////GLOBAL//////
-
+bool shuyatest1 = false;
+float myFloat1 = 0.56;
+int myInt1 = 10;
+int box1 = 3;
+bool randomizeButton = true;
 //////////////////
 //////////////////
 
+void uiWindow::setup(){
+    
+    gui.addTitle("Control Window");
+    gui.addToggle("myBool1 Animate", shuyatest1);
+    gui.addSlider("myFloat1: noise", myFloat1, 0.0, 1); 
+    gui.addSlider("myInt1", myInt1, 100, 200); 
+    gui.addComboBox("box1", box1, 12, NULL);
+    gui.addButton("Randomize Background", randomizeButton);
+    gui.show();
+}
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
+//--------------------------------------------------------------
 //--------------------------------------------------------------
 void testApp::setup(){
 	ofxFenster * win = ofxFensterManager::get()->createFenster(400 , 0, 1300, 900, OF_WINDOW);
@@ -21,6 +39,8 @@ void testApp::setup(){
 void testApp::update(){
 	//xtion--
     xtions.update();
+    
+    ofSetWindowTitle(ofToString(ofGetFrameRate()));
     //--xtion
 }
 
@@ -32,7 +52,7 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-    
+
 }
 
 //--------------------------------------------------------------

@@ -18,11 +18,9 @@ public:
     
     ofxOpenNIContext context;
     myDepthGenerator depth_container;
-    int depth_generator_num;
     
     void setup(){
         cout << "OpenNI ココカラ☆" << endl;
-        depth_generator_num = 0;
         XnStatus nRetVal = XN_STATUS_OK;
         nRetVal = context.setup();
         if (nRetVal != XN_STATUS_OK) {
@@ -71,15 +69,14 @@ public:
         }
         
         printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!\n%i 個のジェネレーターを作りました\n!!!!!!!!!!!!!!!!!!!!!!!!!!!\n", depth_container.generatorNum);
-        depth_generator_num = depth_container.generatorNum;
         depth_container.startGeneratingAll();
     }
     //--------------------------------------
     void update(){
-        context.getXnContext().WaitAndUpdateAll();
         for (int i = 0; i < depth_container.generatorNum; i++) {
             depth_container.update();
         }
+    
     }
     //--------------------------------------
     void draw(){

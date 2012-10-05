@@ -4,22 +4,23 @@
 #include "ofxFensterManager.h"
 #include "ofxOpenCv.h"
 #include "customs/myXtionOperator.h"
-
-//#include "ofxSimpleGuiToo.h"
-
-
+#include "ofxSimpleGuiToo.h"
 
 class uiWindow : public ofxFensterListener {
 public:
-    void draw(){
-//        gui.draw();
+    void setup();
+    
+    void update(){
+    
     }
     
-private:
-//    ofxSimpleGuiToo gui;
-	
+    void draw(){
+        ofBackgroundGradient(ofColor::white, ofColor::gray);
+        gui.draw();
+    }
+    
+    
 };
-
 
 class testApp : public ofBaseApp{
 
