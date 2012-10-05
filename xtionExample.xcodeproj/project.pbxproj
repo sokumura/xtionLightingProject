@@ -22,23 +22,9 @@
 		035E5A56155CDD7F0039FD63 /* libXnVFeatures_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 035E5A47155CDD7F0039FD63 /* libXnVFeatures_1_5_2.dylib */; };
 		035E5A57155CDD7F0039FD63 /* libXnVHandGenerator_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 035E5A48155CDD7F0039FD63 /* libXnVHandGenerator_1_5_2.dylib */; };
 		035E5A58155CDD7F0039FD63 /* libXnVNite_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 035E5A49155CDD7F0039FD63 /* libXnVNite_1_5_2.dylib */; };
-		03BF287D155CCF4300AE9288 /* OpenNIGrabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2858155CCF4300AE9288 /* OpenNIGrabber.cpp */; };
-		03BF287E155CCF4300AE9288 /* OpenNIPerson.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF285A155CCF4300AE9288 /* OpenNIPerson.cpp */; };
-		03BF287F155CCF4300AE9288 /* OpenNIRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF285C155CCF4300AE9288 /* OpenNIRecorder.cpp */; };
-		03BF2880155CCF4300AE9288 /* OpenNISkeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF285E155CCF4300AE9288 /* OpenNISkeleton.cpp */; };
-		03BF2881155CCF4300AE9288 /* PlaybackApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2860155CCF4300AE9288 /* PlaybackApp.cpp */; };
-		03BF2882155CCF4300AE9288 /* RecordingApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2862155CCF4300AE9288 /* RecordingApp.cpp */; };
 		03BF2883155CCF4300AE9288 /* ofxDepthGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2864155CCF4300AE9288 /* ofxDepthGenerator.cpp */; };
-		03BF2884155CCF4300AE9288 /* ofxGestureGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2866155CCF4300AE9288 /* ofxGestureGenerator.cpp */; };
-		03BF2885155CCF4300AE9288 /* ofxHandGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2868155CCF4300AE9288 /* ofxHandGenerator.cpp */; };
-		03BF2886155CCF4300AE9288 /* ofxHardwareDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF286A155CCF4300AE9288 /* ofxHardwareDriver.cpp */; };
-		03BF2887155CCF4300AE9288 /* ofxImageGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF286C155CCF4300AE9288 /* ofxImageGenerator.cpp */; };
-		03BF2888155CCF4300AE9288 /* ofxIRGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF286E155CCF4300AE9288 /* ofxIRGenerator.cpp */; };
 		03BF2889155CCF4300AE9288 /* ofxOpenNIContext.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2872155CCF4300AE9288 /* ofxOpenNIContext.cpp */; };
 		03BF288A155CCF4300AE9288 /* ofxOpenNIRecorder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2875155CCF4300AE9288 /* ofxOpenNIRecorder.cpp */; };
-		03BF288B155CCF4300AE9288 /* ofxTrackedHand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2877155CCF4300AE9288 /* ofxTrackedHand.cpp */; };
-		03BF288C155CCF4300AE9288 /* ofxTrackedUser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF2879155CCF4300AE9288 /* ofxTrackedUser.cpp */; };
-		03BF288D155CCF4300AE9288 /* ofxUserGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BF287B155CCF4300AE9288 /* ofxUserGenerator.cpp */; };
 		1014B83D15E0DBEB006484D2 /* libGhost32.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1014B7CA15E0DBEA006484D2 /* libGhost32.a */; };
 		1014B84215E0DBEB006484D2 /* ofxDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1014B7D715E0DBEA006484D2 /* ofxDisplay.cpp */; };
 		1014B84315E0DBEB006484D2 /* ofxDisplayManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1014B7DA15E0DBEA006484D2 /* ofxDisplayManager.cpp */; };
@@ -67,6 +53,8 @@
 		1014B8AE15E0DCAC006484D2 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1014B8A815E0DCAC006484D2 /* tinyxmlparser.cpp */; };
 		1014B8AF15E0DCAC006484D2 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1014B8AA15E0DCAC006484D2 /* ofxXmlSettings.cpp */; };
 		1014B8BB15E0DCF4006484D2 /* ofxTextInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1014B8B915E0DCF4006484D2 /* ofxTextInputField.cpp */; };
+		1014C99A161CA96D004A0295 /* ofxImageGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1014C996161CA96D004A0295 /* ofxImageGenerator.cpp */; };
+		1014C99B161CA96D004A0295 /* ofxUserGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1014C998161CA96D004A0295 /* ofxUserGenerator.cpp */; };
 		109BB36E15DE28AF007787D1 /* opencv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 109BB35A15DE28AF007787D1 /* opencv.a */; };
 		109BB36F15DE28AF007787D1 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 109BB35D15DE28AF007787D1 /* ofxCvColorImage.cpp */; };
 		109BB37015DE28AF007787D1 /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 109BB36015DE28AF007787D1 /* ofxCvContourFinder.cpp */; };
@@ -266,43 +254,13 @@
 		03BF2853155CCF4300AE9288 /* XnUSBDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XnUSBDevice.h; sourceTree = "<group>"; };
 		03BF2854155CCF4300AE9288 /* XnUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XnUtils.h; sourceTree = "<group>"; };
 		03BF2855155CCF4300AE9288 /* XnVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XnVersion.h; sourceTree = "<group>"; };
-		03BF2858155CCF4300AE9288 /* OpenNIGrabber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenNIGrabber.cpp; sourceTree = "<group>"; };
-		03BF2859155CCF4300AE9288 /* OpenNIGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNIGrabber.h; sourceTree = "<group>"; };
-		03BF285A155CCF4300AE9288 /* OpenNIPerson.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenNIPerson.cpp; sourceTree = "<group>"; };
-		03BF285B155CCF4300AE9288 /* OpenNIPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNIPerson.h; sourceTree = "<group>"; };
-		03BF285C155CCF4300AE9288 /* OpenNIRecorder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenNIRecorder.cpp; sourceTree = "<group>"; };
-		03BF285D155CCF4300AE9288 /* OpenNIRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNIRecorder.h; sourceTree = "<group>"; };
-		03BF285E155CCF4300AE9288 /* OpenNISkeleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenNISkeleton.cpp; sourceTree = "<group>"; };
-		03BF285F155CCF4300AE9288 /* OpenNISkeleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenNISkeleton.h; sourceTree = "<group>"; };
-		03BF2860155CCF4300AE9288 /* PlaybackApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlaybackApp.cpp; sourceTree = "<group>"; };
-		03BF2861155CCF4300AE9288 /* PlaybackApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaybackApp.h; sourceTree = "<group>"; };
-		03BF2862155CCF4300AE9288 /* RecordingApp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RecordingApp.cpp; sourceTree = "<group>"; };
-		03BF2863155CCF4300AE9288 /* RecordingApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingApp.h; sourceTree = "<group>"; };
 		03BF2864155CCF4300AE9288 /* ofxDepthGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxDepthGenerator.cpp; sourceTree = "<group>"; };
 		03BF2865155CCF4300AE9288 /* ofxDepthGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxDepthGenerator.h; sourceTree = "<group>"; wrapsLines = 1; };
-		03BF2866155CCF4300AE9288 /* ofxGestureGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGestureGenerator.cpp; sourceTree = "<group>"; };
-		03BF2867155CCF4300AE9288 /* ofxGestureGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGestureGenerator.h; sourceTree = "<group>"; };
-		03BF2868155CCF4300AE9288 /* ofxHandGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxHandGenerator.cpp; sourceTree = "<group>"; };
-		03BF2869155CCF4300AE9288 /* ofxHandGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxHandGenerator.h; sourceTree = "<group>"; };
-		03BF286A155CCF4300AE9288 /* ofxHardwareDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxHardwareDriver.cpp; sourceTree = "<group>"; };
-		03BF286B155CCF4300AE9288 /* ofxHardwareDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxHardwareDriver.h; sourceTree = "<group>"; };
-		03BF286C155CCF4300AE9288 /* ofxImageGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxImageGenerator.cpp; sourceTree = "<group>"; };
-		03BF286D155CCF4300AE9288 /* ofxImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxImageGenerator.h; sourceTree = "<group>"; };
-		03BF286E155CCF4300AE9288 /* ofxIRGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxIRGenerator.cpp; sourceTree = "<group>"; };
-		03BF286F155CCF4300AE9288 /* ofxIRGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxIRGenerator.h; sourceTree = "<group>"; };
-		03BF2870155CCF4300AE9288 /* ofxLimb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLimb.h; sourceTree = "<group>"; };
-		03BF2871155CCF4300AE9288 /* ofxOpenNI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNI.h; sourceTree = "<group>"; };
 		03BF2872155CCF4300AE9288 /* ofxOpenNIContext.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOpenNIContext.cpp; sourceTree = "<group>"; };
 		03BF2873155CCF4300AE9288 /* ofxOpenNIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNIContext.h; sourceTree = "<group>"; };
 		03BF2874155CCF4300AE9288 /* ofxOpenNIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNIMacros.h; sourceTree = "<group>"; };
 		03BF2875155CCF4300AE9288 /* ofxOpenNIRecorder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOpenNIRecorder.cpp; sourceTree = "<group>"; };
 		03BF2876155CCF4300AE9288 /* ofxOpenNIRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenNIRecorder.h; sourceTree = "<group>"; };
-		03BF2877155CCF4300AE9288 /* ofxTrackedHand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTrackedHand.cpp; sourceTree = "<group>"; };
-		03BF2878155CCF4300AE9288 /* ofxTrackedHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTrackedHand.h; sourceTree = "<group>"; };
-		03BF2879155CCF4300AE9288 /* ofxTrackedUser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTrackedUser.cpp; sourceTree = "<group>"; };
-		03BF287A155CCF4300AE9288 /* ofxTrackedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTrackedUser.h; sourceTree = "<group>"; };
-		03BF287B155CCF4300AE9288 /* ofxUserGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxUserGenerator.cpp; sourceTree = "<group>"; };
-		03BF287C155CCF4300AE9288 /* ofxUserGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUserGenerator.h; sourceTree = "<group>"; };
 		1014B78F15E0DBEA006484D2 /* GHOST_DisplayManagerCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHOST_DisplayManagerCocoa.h; sourceTree = "<group>"; };
 		1014B79015E0DBEA006484D2 /* GHOST_SystemCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHOST_SystemCocoa.h; sourceTree = "<group>"; };
 		1014B79115E0DBEA006484D2 /* GHOST_SystemPathsCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHOST_SystemPathsCocoa.h; sourceTree = "<group>"; };
@@ -405,6 +363,12 @@
 		1014B8AB15E0DCAC006484D2 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
 		1014B8B915E0DCF4006484D2 /* ofxTextInputField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTextInputField.cpp; sourceTree = "<group>"; };
 		1014B8BA15E0DCF4006484D2 /* ofxTextInputField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTextInputField.h; sourceTree = "<group>"; };
+		1014C995161CA7E4004A0295 /* ofxOpenNIHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxOpenNIHeaders.h; path = customs/ofxOpenNIHeaders.h; sourceTree = "<group>"; };
+		1014C996161CA96D004A0295 /* ofxImageGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxImageGenerator.cpp; sourceTree = "<group>"; };
+		1014C997161CA96D004A0295 /* ofxImageGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxImageGenerator.h; sourceTree = "<group>"; };
+		1014C998161CA96D004A0295 /* ofxUserGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxUserGenerator.cpp; sourceTree = "<group>"; };
+		1014C999161CA96D004A0295 /* ofxUserGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUserGenerator.h; sourceTree = "<group>"; };
+		1014C9A3161CAE78004A0295 /* myDepthGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = myDepthGenerator.h; path = customs/myDepthGenerator.h; sourceTree = "<group>"; };
 		107E6D7F15E20E0E0029B274 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = ../ofxFensterExample/Project.xcconfig; sourceTree = SOURCE_ROOT; };
 		109BB2F815DE28AF007787D1 /* cv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cv.h; sourceTree = "<group>"; };
 		109BB2F915DE28AF007787D1 /* cv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cv.hpp; sourceTree = "<group>"; };
@@ -521,7 +485,7 @@
 		E4B69B5B0A3A1756003C02F2 /* XtionExampleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XtionExampleDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1E0A3A1BDC003C02F2 /* testApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = testApp.cpp; path = src/testApp.cpp; sourceTree = SOURCE_ROOT; };
-		E4B69E1F0A3A1BDC003C02F2 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = src/testApp.h; sourceTree = SOURCE_ROOT; };
+		E4B69E1F0A3A1BDC003C02F2 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = src/testApp.h; sourceTree = SOURCE_ROOT; };
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -793,53 +757,19 @@
 		03BF2856155CCF4300AE9288 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				03BF2857155CCF4300AE9288 /* jvcOpenNIUtils */,
+				1014C996161CA96D004A0295 /* ofxImageGenerator.cpp */,
+				1014C997161CA96D004A0295 /* ofxImageGenerator.h */,
+				1014C998161CA96D004A0295 /* ofxUserGenerator.cpp */,
+				1014C999161CA96D004A0295 /* ofxUserGenerator.h */,
 				03BF2864155CCF4300AE9288 /* ofxDepthGenerator.cpp */,
 				03BF2865155CCF4300AE9288 /* ofxDepthGenerator.h */,
-				03BF2866155CCF4300AE9288 /* ofxGestureGenerator.cpp */,
-				03BF2867155CCF4300AE9288 /* ofxGestureGenerator.h */,
-				03BF2868155CCF4300AE9288 /* ofxHandGenerator.cpp */,
-				03BF2869155CCF4300AE9288 /* ofxHandGenerator.h */,
-				03BF286A155CCF4300AE9288 /* ofxHardwareDriver.cpp */,
-				03BF286B155CCF4300AE9288 /* ofxHardwareDriver.h */,
-				03BF286C155CCF4300AE9288 /* ofxImageGenerator.cpp */,
-				03BF286D155CCF4300AE9288 /* ofxImageGenerator.h */,
-				03BF286E155CCF4300AE9288 /* ofxIRGenerator.cpp */,
-				03BF286F155CCF4300AE9288 /* ofxIRGenerator.h */,
-				03BF2870155CCF4300AE9288 /* ofxLimb.h */,
-				03BF2871155CCF4300AE9288 /* ofxOpenNI.h */,
 				03BF2872155CCF4300AE9288 /* ofxOpenNIContext.cpp */,
 				03BF2873155CCF4300AE9288 /* ofxOpenNIContext.h */,
 				03BF2874155CCF4300AE9288 /* ofxOpenNIMacros.h */,
 				03BF2875155CCF4300AE9288 /* ofxOpenNIRecorder.cpp */,
 				03BF2876155CCF4300AE9288 /* ofxOpenNIRecorder.h */,
-				03BF2877155CCF4300AE9288 /* ofxTrackedHand.cpp */,
-				03BF2878155CCF4300AE9288 /* ofxTrackedHand.h */,
-				03BF2879155CCF4300AE9288 /* ofxTrackedUser.cpp */,
-				03BF287A155CCF4300AE9288 /* ofxTrackedUser.h */,
-				03BF287B155CCF4300AE9288 /* ofxUserGenerator.cpp */,
-				03BF287C155CCF4300AE9288 /* ofxUserGenerator.h */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		03BF2857155CCF4300AE9288 /* jvcOpenNIUtils */ = {
-			isa = PBXGroup;
-			children = (
-				03BF2858155CCF4300AE9288 /* OpenNIGrabber.cpp */,
-				03BF2859155CCF4300AE9288 /* OpenNIGrabber.h */,
-				03BF285A155CCF4300AE9288 /* OpenNIPerson.cpp */,
-				03BF285B155CCF4300AE9288 /* OpenNIPerson.h */,
-				03BF285C155CCF4300AE9288 /* OpenNIRecorder.cpp */,
-				03BF285D155CCF4300AE9288 /* OpenNIRecorder.h */,
-				03BF285E155CCF4300AE9288 /* OpenNISkeleton.cpp */,
-				03BF285F155CCF4300AE9288 /* OpenNISkeleton.h */,
-				03BF2860155CCF4300AE9288 /* PlaybackApp.cpp */,
-				03BF2861155CCF4300AE9288 /* PlaybackApp.h */,
-				03BF2862155CCF4300AE9288 /* RecordingApp.cpp */,
-				03BF2863155CCF4300AE9288 /* RecordingApp.h */,
-			);
-			path = jvcOpenNIUtils;
 			sourceTree = "<group>";
 		};
 		03BF288E155CCF5300AE9288 /* lib */ = {
@@ -1133,6 +1063,15 @@
 				1014B8BA15E0DCF4006484D2 /* ofxTextInputField.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		1014C993161BF4FF004A0295 /* customs */ = {
+			isa = PBXGroup;
+			children = (
+				1014C9A3161CAE78004A0295 /* myDepthGenerator.h */,
+				1014C995161CA7E4004A0295 /* ofxOpenNIHeaders.h */,
+			);
+			name = customs;
 			sourceTree = "<group>";
 		};
 		109BB2F215DE28AF007787D1 /* ofxOpenCv */ = {
@@ -1486,6 +1425,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				1014C993161BF4FF004A0295 /* customs */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* testApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
@@ -1589,23 +1529,9 @@
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* testApp.cpp in Sources */,
-				03BF287D155CCF4300AE9288 /* OpenNIGrabber.cpp in Sources */,
-				03BF287E155CCF4300AE9288 /* OpenNIPerson.cpp in Sources */,
-				03BF287F155CCF4300AE9288 /* OpenNIRecorder.cpp in Sources */,
-				03BF2880155CCF4300AE9288 /* OpenNISkeleton.cpp in Sources */,
-				03BF2881155CCF4300AE9288 /* PlaybackApp.cpp in Sources */,
-				03BF2882155CCF4300AE9288 /* RecordingApp.cpp in Sources */,
 				03BF2883155CCF4300AE9288 /* ofxDepthGenerator.cpp in Sources */,
-				03BF2884155CCF4300AE9288 /* ofxGestureGenerator.cpp in Sources */,
-				03BF2885155CCF4300AE9288 /* ofxHandGenerator.cpp in Sources */,
-				03BF2886155CCF4300AE9288 /* ofxHardwareDriver.cpp in Sources */,
-				03BF2887155CCF4300AE9288 /* ofxImageGenerator.cpp in Sources */,
-				03BF2888155CCF4300AE9288 /* ofxIRGenerator.cpp in Sources */,
 				03BF2889155CCF4300AE9288 /* ofxOpenNIContext.cpp in Sources */,
 				03BF288A155CCF4300AE9288 /* ofxOpenNIRecorder.cpp in Sources */,
-				03BF288B155CCF4300AE9288 /* ofxTrackedHand.cpp in Sources */,
-				03BF288C155CCF4300AE9288 /* ofxTrackedUser.cpp in Sources */,
-				03BF288D155CCF4300AE9288 /* ofxUserGenerator.cpp in Sources */,
 				109BB36F15DE28AF007787D1 /* ofxCvColorImage.cpp in Sources */,
 				109BB37015DE28AF007787D1 /* ofxCvContourFinder.cpp in Sources */,
 				109BB37115DE28AF007787D1 /* ofxCvFloatImage.cpp in Sources */,
@@ -1640,6 +1566,8 @@
 				1014B8AE15E0DCAC006484D2 /* tinyxmlparser.cpp in Sources */,
 				1014B8AF15E0DCAC006484D2 /* ofxXmlSettings.cpp in Sources */,
 				1014B8BB15E0DCF4006484D2 /* ofxTextInputField.cpp in Sources */,
+				1014C99A161CA96D004A0295 /* ofxImageGenerator.cpp in Sources */,
+				1014C99B161CA96D004A0295 /* ofxUserGenerator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

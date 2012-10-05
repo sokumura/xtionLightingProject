@@ -1,11 +1,10 @@
 #include "testApp.h"
 //////////////////
 //////GLOBAL//////
-
+const XnMapOutputMode OUT_PUT_MODE = { 640 , 480, 30 };
 
 //////////////////
 //////////////////
-
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -15,56 +14,121 @@ void testApp::setup(){
     
     ui.setup();
 //xtion--
-	//context.setupUsingXMLFile(ofToDataPath("openni/config/asus.xml", true));
+    cout << "OpenNI ココカラ☆" << endl;
+    depth_generator_num = 0;
     XnStatus nRetVal = XN_STATUS_OK;
-    nRetVal = context.setup();    
-    NodeInfoList devicesList;
-    int devicesListCount = 0;
-    nRetVal = context.getXnContext().EnumerateProductionTrees(XN_NODE_TYPE_DEVICE, NULL, devicesList);
-    for (NodeInfoList::Iterator it = devicesList.Begin(); it != devicesList.End(); ++it){
-        devicesListCount++;
+    nRetVal = context.setup();
+    if (nRetVal != XN_STATUS_OK) {
+        logErrors(errors);
+        ofLogError("OpenNI error : context.Init();", xnGetStatusString(nRetVal));
     }
-    cout << "devicesListCount : " << devicesListCount << endl;
     
-    int i=0;
-    for (NodeInfoList::Iterator it = devicesList.Begin(); it != devicesList.End(); ++it, ++i){
-        NodeInfo deviceInfo = *it;
-        nRetVal = context.getXnContext().CreateProductionTree(deviceInfo, sensors[i].device);
-        Query query;
-        query.AddNeededNode(deviceInfo.GetInstanceName());
-        nRetVal = context.getXnContext().CreateAnyProductionTree(XN_NODE_TYPE_DEPTH, &query, sensors[i].depth.getXnDepthGenerator());
+    customEnumerateProductionTrees(context.getXnContext(), XN_NODE_TYPE_DEVICE);
+    customEnumerateProductionTrees(context.getXnContext(), XN_NODE_TYPE_DEPTH);
+    
+    NodeInfoList nodeList;
+    nRetVal = context.getXnContext().EnumerateExistingNodes(nodeList);
+    if (nRetVal != XN_STATUS_OK) {
+        ofLogError("OpenNI error : context.EnumerateExistingNodes();", xnGetStatusString(nRetVal));
+        logErrors(errors);
+    } else cout << "//////////////nodeExistings Successed!!!!///////////////" << endl;
+    int geneNum = 0;
+    for (NodeInfoList::Iterator it = nodeList.Begin(); it != nodeList.End(); ++it, geneNum++) {
+        //インスタンス名の最後が番号になってるから、
+        std::string name = (*it).GetInstanceName();
+        cout << "--------------nodeInfomation------------\nname is : " << name << endl;
+        int no = *name.rbegin() - '1';
+        cout << "no is : " << no << endl;
+        
+        std::cout << 
+        "GetCreationInfo() : " <<
+        (*it).GetCreationInfo() << "\n" <<
+        "GetInstanceName() : " <<
+        (*it).GetInstanceName() << "\n" <<
+        "GetDescription().strName : " <<
+        (*it).GetDescription().strName << "\n" <<
+        "GetDescription().strVendor : " <<
+        (*it).GetDescription().strVendor << "\n" << 
+        "-------/nodeInfomation-----" << std::endl;
+        
+        if ((*it).GetDescription().Type == XN_NODE_TYPE_DEPTH) {
+            NodeInfo info = *it;
+            bool result = depth_container.setup(info);
+            if (!result) {
+                logErrors(errors);
+                ofLogError("OpenNI error: generatorSet : ", xnGetStatusString(nRetVal));
+            }
+            std::cout << "sensor[" << no << "]のdepthGeneratorを作成!!" << std::endl;
+        }
+        //logErrors(errors);
     }
-    context.getXnContext().StartGeneratingAll();
     
+    printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!\n%i 個のジェネレーターを作りました\n!!!!!!!!!!!!!!!!!!!!!!!!!!!\n", depth_container.generatorNum);
+    //context.getXnContext().StartGeneratingAll();
+    depth_container.startGeneratingAll();
     
-    
-    //depthGenerator.setup(&context);
 //--xtion
+}
+/*--------------------------------------------------------------
+
+
+ ------------*/
+void testApp::logErrors(EnumerationErrors& rErrors){
+    for(xn::EnumerationErrors::Iterator it = rErrors.Begin(); it != rErrors.End(); ++it) {
+        XnChar desc[512];
+		xnProductionNodeDescriptionToString(&it.Description(), desc,512);
+		printf("%s failed: %s\n", desc, xnGetStatusString(it.Error()));
+	}	
+}
+//-------------------------------
+void testApp::customEnumerateProductionTrees(xn::Context& con, XnProductionNodeType type){
+    NodeInfoList nodes;
+    XnStatus rc = XN_STATUS_OK;
+    rc = con.EnumerateProductionTrees(type, NULL, nodes);
+    if (rc != XN_STATUS_OK) {
+        ofLogError("MY TASK NO.1", xnGetStatusString(rc));
+    } else if (nodes.Begin() == nodes.End()) {
+        ofLogError("MY TASK NO.1", "No device found.");
+    }
+    
+    for (NodeInfoList::Iterator it = nodes.Begin(); it != nodes.End(); ++it) {
+        cout << "MY TASK NO.2 " <<
+        xnProductionNodeTypeToString((*it).GetDescription().Type ) << ", " <<
+        (*it).GetCreationInfo() << ", " <<
+        (*it).GetInstanceName() << ", " <<
+        (*it).GetDescription().strName << ", " <<
+        (*it).GetDescription().strVendor << ", " << endl;
+        
+        NodeInfo info = *it;
+        con.CreateProductionTree(info);
+    }
+    
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-	context.update();
-	//depthGenerator.update();
-	for (int i = 0; i < NUM_OF_SENSORS; i++) {
-        sensors[i].depth.update();
+	//xtion--
+    context.getXnContext().WaitAndUpdateAll();
+    for (int i = 0; i < depth_container.generatorNum; i++) {
+        depth_container.update();
     }
-	//depthGeneratorから、深さとx,yの情報を得る
-	//
-	
+	//--xtion
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
     
-	for (int i = 0; i < NUM_OF_SENSORS; i++){
-        sensors[i].depth.draw(i*700, 0, 640, 480);
+    for (int i = 0; i < depth_container.generatorNum; i++) {
+        depth_container.testDraw(0.0, 0.0, 640.0, 480.0);
     }
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    if (key == ' ') {
+        context.getXnContext().Release();
+        cout << "RELEASED!!!" << endl;
+    }
 }
 
 //--------------------------------------------------------------

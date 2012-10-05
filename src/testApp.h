@@ -3,13 +3,17 @@
 #include "ofMain.h"
 #include "ofxFensterManager.h"
 #include "ofxOpenCv.h"
-#include "ofxOpenNI.h"
+#include "myDepthGenerator.h"
+#include "ofxOpenNIHeaders.h"
+#include "XnCppWrapper.h"
+
 //#include "ofxSimpleGuiToo.h"
 
 using namespace xn;
 
-#define NUM_OF_SENSORS  2
-#define MAX_DEPTH 10000
+//#define MAX_DEPTH 10000
+
+typedef vector<float> depth_hist;
 
 class uiWindow : public ofxFensterListener {
 public:
@@ -22,12 +26,6 @@ private:
 	
 };
 
-struct DepthSensors {
-    char name[80];
-    ProductionNode device;
-    ofxDepthGenerator depth;
-    //DepthMetaData depthMD;
-};
 
 class testApp : public ofBaseApp{
 
@@ -46,10 +44,21 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-	ofxOpenNIContext    context;
-	//ofxDepthGenerator   depthGenerator;
-    DepthSensors sensors[NUM_OF_SENSORS];
+    depth_hist getDepthHistgram(const DepthGenerator& depth, const DepthMetaData& depthMD);
+    void customEnumerateProductionTrees(xn::Context& context, XnProductionNodeType type);
     
+    ofxOpenNIContext context;
+    //DepthSensors sensors[NUM_OF_SENSORS];
+
+    
+    //fenster
     uiWindow ui;
+    
+    myDepthGenerator depth_container;
+    int depth_generator_num;
+    
+private:
+    EnumerationErrors errors;
+    void logErrors(EnumerationErrors& rErrors);
 		
 };
