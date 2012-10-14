@@ -8,17 +8,15 @@
 
 class uiWindow : public ofxFensterListener {
 public:
+    
     void setup();
     
     void update(){
     
     }
     
-    void draw(){
-        ofBackgroundGradient(ofColor::white, ofColor::gray);
-        gui.draw();
-    }
-    
+    void draw();
+    void keyPressed(int key);
     
 };
 
@@ -39,7 +37,7 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    myXtionOperator xtions;
+    
 
     //fenster
     uiWindow ui;

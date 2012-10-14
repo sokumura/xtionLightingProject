@@ -43,7 +43,7 @@ public:
 
 	
     //----------------------------------------------
-	bool setup(xn::NodeInfo& node){
+	bool setup(xn::NodeInfo const& node){
         XnStatus result = XN_STATUS_OK;	
         xn::DepthGenerator dg;
         result = node.GetInstance(dg);
